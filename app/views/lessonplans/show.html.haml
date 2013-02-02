@@ -6,7 +6,7 @@
 			%a{ :href => "javascript:;" } 案例
 		%li.active
 			%a{ :href => "javascript:;" } 精品
-			
+
 %article.plan
 	-if can? :update, @lessonplan or can? :destroy, @lessonplan
 		%p.page-action
@@ -22,7 +22,7 @@
 			%a{ :href => "javascript:;" } 内容
 		- if @lessonplan.title == "造纸桥"
 			%li
-				%a{ :href => "/ppt.html" } 
+				%a{ :href => "/ppt.html" }
 					幻灯片
 		%li
 			%a{ :href => "#comments" }
@@ -44,6 +44,9 @@
 						%div
 							%b {{task.title}}
 							%div{ 'ng-bind-html-unsafe' => 'task.content' }
+					%h3 玩一玩
+					= render :partial => "scratcher"
+
 
 	= render :partial => "shared/publisher_aside", :locals => { :publisher => @lessonplan.publisher }
 
@@ -70,6 +73,3 @@
 					= form_for :comment, :url => lessonplan_comments_url(@lessonplan), :html => { 'ng-submit' => 'submitForm()' } do |f|
 						= f.text_area :content, :placeholder => "评论一下这个教案...", :rows => 5, 'ng-model' => 'new_comment_content'
 						= f.submit '提交评论', :class => 'btn btn-primary'
-
-	
-						
